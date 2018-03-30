@@ -1,4 +1,4 @@
-# Yippi!  
+# Yippi!  [![Documentation Status](https://readthedocs.org/projects/yippi/badge/?version=latest)](http://yippi.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.org/Rendyindo/yippi.svg?branch=master)](https://travis-ci.org/Rendyindo/yippi)
 Yippi is an e621 API wrapper for Python, to make everyone's life simplier.
 
 # Requirements
