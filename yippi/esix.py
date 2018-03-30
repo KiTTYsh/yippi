@@ -57,6 +57,9 @@ class Submission(object):
         self._parent_id = None
         self._artist = None
 
+    def __repr__(self):
+        return str(self.object)
+
     @property
     def created_at(self):
         created_timestamp = self.object['created_at']['s']
