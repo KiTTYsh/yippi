@@ -4,3 +4,6 @@
 auth
 .cache
 venv*/
+.vscode
+docs/_build
+*.egg-info
