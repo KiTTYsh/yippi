@@ -5,6 +5,27 @@ headers = {
 }
 
 def search(tags : list, rating="e", limit=50, page=1, **kwargs):
+    """
+    Searches e621
+
+    :Parameters:
+
+    tags : [:class:`list`]
+        The tags that will be given to and processed by e621
+    rating : [Optional :class:`str`]
+        Rating that will be used to search, refer to `e621 cheatseet`_ for more information, defaults to "e"
+    limit : [Optional :class:`int`]
+        Limit total results from e621 API, defaults to 50
+    page : [Optional :class:`int`]
+        Scroll through the page given, defaults to page 1
+
+    Every kwargs will be processed like what `e621 cheatseet` said
+
+    .. _e621 cheatseet: https://e621.net/help/show/cheatsheet
+
+    :Return:
+
+    This command will return list of :class:Submission object"""
     extratags = []
     for kw in list(kwargs.items()):
         kw =':'.join(kw)
@@ -21,6 +42,17 @@ def search(tags : list, rating="e", limit=50, page=1, **kwargs):
     return objects
 
 def post(id : int):
+    """
+    Opens a e621 post
+
+    :Parameters:
+
+    id : :class:`int`
+        The post ID of a submission
+
+    :Return:
+
+    :class:`Submission` object of the post"""
     apiurl = "https://e621.net/post/show.json?id=%s" % (id)
     req = urllib.request.Request(apiurl, headers=headers)
     http = urllib.request.urlopen(req)
@@ -28,6 +60,69 @@ def post(id : int):
     return Submission(result)
 
 class Submission(object):
+    """
+    A representation of e621 submission post object
+
+    :Parameters:
+
+    object : :class:`dict`
+        A JSON or dict of the submission given from e621 API, this should be a valid JSON or everything will broke
+
+    :Attributes:
+    
+    id : :class:`int`
+        The post ID of the submission
+    tags : :class:`list`
+        Tags of the submission, splitted with every space
+    locked_tags : :class:`bool`
+        Check if the tags are locked for edit
+    description : :class:`str`
+        Description of the submission, if no description is given, this will be a `None` object
+    created_at : :class:`str`
+        Date of the submission is posted
+    creator_id : :class:`int`
+        The creator's user ID
+    author : :class:`str`
+        Author of the submission
+    change : :class:`int`
+        This thing is still unknown, e621 doesn't give any info about this
+    source : :class:`str`
+        Source of the submission, taken from :function:sources and took the very first value of it
+    sources : :class:`list`
+        List of the source of the submission
+    score : :class:`int`
+        The score of the submission
+    fav_count : :class:`int`
+        Total favorites of the submission
+    md5 : :class:`str`
+        MD5 checksum of the submission file
+    file_size : :class:`int`
+        Size of the submission file in bytes
+    file_url : :class:`str`
+        Submission file URL
+    file_ext : :class:`str`
+        Submission file extension
+    rating : :class:`str`
+        Rating of the submission, refer to `e621 cheatseet`_ for more information
+    status : :class:`str`
+        Submission status, one of: active, flagged, pending, deleted
+    width : :class:`int`
+        The width of the file in pixel
+    height : :class:`int`
+        Same as :function:width but with height
+    has_comments : :class:`bool`
+        Check if the submission has comments or not
+    has_children : :class:`bool`
+        Check if the submission has children post or not
+    children : :class:`list`
+        The child post of the submission, if there's none, it will return `None` object
+    parent : :class:`int`
+        Parent post of the submission, if there's none, it will return `None` object
+    artist : :class:`list`
+        The artist who draw the submission, of course.
+        
+    .. _e621 cheatseet: https://e621.net/help/show/cheatsheet"""
+    
     def __init__(self, object):
         self.object = object
         self._id = None
