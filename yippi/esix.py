@@ -75,7 +75,7 @@ class Submission(object):
     @property
     def tags(self):
         if self.object['tags']:
-            self._tags = self.object['tags']
+            self._tags = self.object['tags'].split(" ")
         return self._tags
 
     @property
