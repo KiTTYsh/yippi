@@ -54,7 +54,7 @@ class Submission(object):
         self._has_notes = None
         self._has_children = None
         self._children = None
-        self._parent_id = None
+        self._parent = None
         self._artist = None
 
     def __repr__(self):
@@ -202,13 +202,17 @@ class Submission(object):
     def children(self):
         if self.object['children']:
             self._children = self.object['children']
+            splitted = self._children.split(',')
+            self._children = []
+            for child in splitted:
+                self._children.append(post(child))
         return self._children
 
     @property
-    def parent_id(self):
+    def parent(self):
         if self.object['parent_id']:
-            self._parent_id = self.object['parent_id']
-        return self._parent_id
+            self._parent = post(self.object['parent_id'])
+        return self._parent
 
     @property
     def artist(self):
