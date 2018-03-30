@@ -13,7 +13,7 @@ def search(tags : list, rating="e", limit=50, page=1, **kwargs):
         % ('+'.join(tags), rating, '+'.join(extratags), limit, page)
     req = urllib.request.Request(apiurl, headers=headers)
     http = urllib.request.urlopen(req)
-    results = json.loads(http.read())
+    results = json.loads(http.read().decode("utf-8"))
     objects = []
     for obj in results:
         esixobject = Submission(obj)
@@ -24,7 +24,7 @@ def post(id : int):
     apiurl = "https://e621.net/post/show.json?id=%s" % (id)
     req = urllib.request.Request(apiurl, headers=headers)
     http = urllib.request.urlopen(req)
-    result = json.loads(http.read())
+    result = json.loads(http.read().decode("utf-8"))
     return Submission(result)
 
 class Submission(object):
