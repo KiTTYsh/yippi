@@ -2,7 +2,7 @@
 Yippi is an e621 API wrapper for Python, to make everyone's life simplier.
 
 #Requirements 
-+ Python
++ Python 3.x
 + urllib
 + json
 
