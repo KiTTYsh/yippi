@@ -9,6 +9,12 @@ class Submission(object):
     object : [:class:`dict`]
         A JSON or dict of the submission given from e621 API, this should be a valid JSON or everything will broke
 
+    :Functions:
+
+    .. function:: download(file_name)
+
+        Downloads the submission's file
+
     :Attributes:
     
     id : :class:`int`
@@ -255,6 +261,11 @@ class Submission(object):
         if self.object['artist']:
             self._artist = self.object['artist']
         return self._artist
+
+    def download(self, file_name):
+        with urllib.request.urlopen(self.file_url) as response, open(file_name, 'wb') as out_file:
+            data = response.read()
+            out_file.write(data)
 
 class Artist(object):
     """
