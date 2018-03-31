@@ -96,7 +96,7 @@ def post(id : int):
     return Submission(result)
 
 def user(id="", name="", level=-1, order="name"):
-    if id == "" and name == "":
+    if not id and not name:
         print("Please specify either id or name!")
         return
     apiurl = "https://e621.net/user/index.json?id=%s&name=%s&level=%s&order=%s" % (id, name, level, order)
