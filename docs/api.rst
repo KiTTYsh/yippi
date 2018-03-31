@@ -14,3 +14,6 @@ Objects
 
 .. autoclass:: Submission
     :members:
+
+.. autoclass:: Artist
+    :members:
