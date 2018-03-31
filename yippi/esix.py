@@ -95,7 +95,7 @@ def post(id : int):
     result = json.loads(http.read().decode("utf-8"))
     return Submission(result)
 
-def user(id="", name="", level=-1, order="name"):
+def user(*, id="", name="", level=-1, order="name"):
     if not id and not name:
         print("Please specify either id or name!")
         return
