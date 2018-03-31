@@ -6,9 +6,8 @@ API Reference
 Commands
 --------
 
-.. autofunction:: search
-
-.. autofunction:: post
+.. autoclass:: search
+    :members:
 
 Objects
 -------

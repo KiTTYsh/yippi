@@ -53,10 +53,10 @@ class search():
         name : [:class:`str`]
             Artist name that will be given as query to e621 API
         limit : [:class:`int`]
-            Uhm, same as the :function:`search` one, defaults to 10
+            Uhm, same as the :function:`post` one, defaults to 10
         order : [:class:`str`]
             Order the result based on "date" or "name", defaults to "name"
-        page : [:class:`int`M
+        page : [:class:`int`]
              Same as the :function: `search` one too
 
         :Returns:
