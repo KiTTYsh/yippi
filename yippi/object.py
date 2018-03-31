@@ -299,43 +299,43 @@ class Artist(object):
     @property
     def name(self):
         if self.object['name']:
-            self._id = self.object['name']
+            self._name = self.object['name']
         return self._name
 
     @property
     def other_names(self):
         if self.object['other_names']:
-            self._id = self.object['other_names']
+            self._other_names = self.object['other_names']
         return self._other_names
 
     @property
     def group_name(self):
         if self.object['group_name']:
-            self._id = self.object['group_name']
+            self._group_name = self.object['group_name']
         return self._group_name
 
     @property
     def urls(self):
         if self.object['urls']:
-            self._id = self.object['urls']
+            self._urls = self.object['urls']
         return self._urls
 
     @property
     def is_active(self):
         if self.object['is_active']:
-            self._id = self.object['is_active']
+            self._is_active = self.object['is_active']
         return self._is_active
 
     @property
     def version(self):
         if self.object['version']:
-            self._id = self.object['version']
+            self._version = self.object['version']
         return self._version
 
     @property
     def updater_id(self):
         if self.object['updater_id']:
-            self._id = self.object['updater_id']
+            self._updater_id = self.object['updater_id']
         return self._updater_id
 
 class User(object):
