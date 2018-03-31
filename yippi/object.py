@@ -1,4 +1,4 @@
-import datetime, yippi
+import datetime, yippi, urllib.request
 
 class Submission(object):
     """
@@ -263,6 +263,7 @@ class Artist(object):
     :Parameters:
 
     object : [:class:`dict`]
+        A JSON or dict of the artist given from e621 API, this should be a valid JSON or everything will broke
 
     :Attributes:
 
@@ -339,13 +340,36 @@ class Artist(object):
         return self._updater_id
 
 class User(object):
+    """Representation of user information
+
+    :Parameters:
+
+    object : [:class:`dict`]
+        A JSON or dict of the user given from e621 API, this should be a valid JSON or everything will broke
+
+    :Attributes:
+
+    name : :class:`str`
+        The username
+    id : :class:`int`
+        User ID
+    level : :class:`UserLevel`
+        Level of the user in e621
+    created_at : :class:`str`
+        Date when user creates the account (YY-MM-DD HH:MM format)
+    avatar : :class:`Submission`
+        Submission post of the user's avatar
+    stats : :class:`UserStats`
+        Statistic of user's events at e621
+    artist_tags : :class:`list`
+        Artist tags associated with the user"""
     def __init__(self, object):
         self.object = object
         self._name = None
         self._id = None
         self._level = None
         self._created_at = None
-        self._avatar_id = None
+        self._avatar = None
         self._stats = None
         self._artist_tags = None
 
@@ -368,7 +392,7 @@ class User(object):
     def level(self):
         if self.object['level']:
             self._level = self.object['level']
-        return self._level
+        return UserLevel(self._level)
 
     @property
     def created_at(self):
@@ -377,10 +401,15 @@ class User(object):
         return self._created_at
 
     @property
-    def avatar_id(self):
+    def avatar(self):
         if self.object['avatar_id']:
-            self._avatar_id = self.object['avatar_id']
-        return self._avatar_id
+            apiurl = "https://e621.net/post/show.json?id=%s" % (id)
+            req = urllib.request.Request(apiurl, headers=headers)
+            http = urllib.request.urlopen(req)
+            result = json.loads(http.read().decode("utf-8"))
+            return Submission(result)
+        else:
+            return self._avatar
 
     @property
     def stats(self):
@@ -395,6 +424,31 @@ class User(object):
         return self._artist_tags
 
 class UserStats(object):
+    """
+    Representation of user events statistic, all data is in :class:`int`
+
+    :Parameters:
+
+    object : [:class:`dict`]
+        A JSON or dict of the submission given from e621 API, this should be a valid JSON or everything will broke
+
+    :Attributes:
+
+    * `post_count`
+    * `del_post_count`
+    * `edit_count`
+    * `favorite_count`
+    * `wiki_count`
+    * `forum_post_count`
+    * `note_count`
+    * `comment_count`
+    * `blip_count`
+    * `set_count`
+    * `pool_update_count`
+    * `pos_user_records`
+    * `neutral_user_records`
+    * `neg_user_records`"""
+    
     def __init__(self, object):
         self.object = object
         self._post_count = None
@@ -500,6 +554,34 @@ class UserStats(object):
         return self._neg_user_records
 
 class UserLevel(object):
+    """
+    Representation of level of :class:`User` at e621
+
+    :IDs:
+
+    * 0   Unactivated
+    * 10 Blocked
+    * 20 Member
+    * 30 Privileged
+    * 33 Contributor
+    * 34 Former Staff
+    * 35 Janitor
+    * 40 Mod
+    * 50 Admin
+
+    :Parameters:
+
+    level : [:class:`int`]
+        The level ID of the user
+
+    :Attributes:
+
+    string : :class:`str`
+        The permission level string of user
+    value : :class:`int`
+        Value ID of the object
+    get : :class:`str`
+        Get a level ID of a permission level"""
     def __init__(self, level : int):
         self._levelint = level
         self._Level = {

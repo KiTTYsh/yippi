@@ -17,3 +17,12 @@ Objects
 
 .. autoclass:: Artist
     :members:
+
+.. autoclass:: User
+    :members:
+
+.. autoclass:: UserLevel
+    :members:
+
+.. autoclass:: UserStats
+    :members:
