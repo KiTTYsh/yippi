@@ -7,3 +7,4 @@ venv*/
 .vscode
 docs/_build
 *.egg-info
+.pytest_cache

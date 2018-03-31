@@ -1,7 +1,7 @@
 import yippi
 
 def test_yippi():
-    res = yippi.search(['girly', 'male'], limit=1, rating="q", order="score")[0]
+    res = yippi.search.post(['girly', 'male'], limit=1, rating="q", order="score")[0]
     res.id
     res.tags
     res.locked_tags
