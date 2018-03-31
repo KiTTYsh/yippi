@@ -32,7 +32,7 @@ class search:
     
         :Return:
     
-        This command will return list of :class:Submission object"""
+        This command will return list of :class:`Submission` object"""
         extratags = []
         for kw in list(kwargs.items()):
             kw =':'.join(kw)
@@ -61,7 +61,7 @@ class search:
         order : [:class:`str`]
             Order the result based on "date" or "name", defaults to "name"
         page : [:class:`int`]
-             Same as the :function: `search` one too
+             Same as the :function:`search` one too
 
         :Returns:
 
@@ -78,6 +78,23 @@ class search:
         return objects
 
     def user(*, id="", name="", level=-1, order="name"):
+        """
+        Searches user at e621
+
+        :Parameters:
+
+        id : [:class:`int`]
+            The user ID to search
+        name : [:class:`str`]
+            Text query matching part or all of a user's name
+        level : [:class:`int`]
+            Permission level to search
+        order : [:class:`str`]
+            Sort of order, defaults to `name`
+
+        :Returns:
+
+        :class:`User` object"""
         if not id and not name:
             print("Please specify either id or name!")
             return
