@@ -498,3 +498,32 @@ class UserStats(object):
         if self.object['neg_user_records']:
             self._neg_user_records = self.object['neg_user_records']
         return self._neg_user_records
+
+class UserLevel(object):
+    def __init__(self, level : int):
+        self._levelint = level
+        self._Level = {
+            'Everyone': -1,
+            'Unactivated': 0,
+            'Blocked': 10,
+            'Member': 20,
+            'Privileged': 30,
+            'Staff': 34,
+            'Janitor': 35,
+            'Mod': 40,
+            'Admin': 50
+        }
+
+    @property
+    def string(self):
+        for key, val in self._Level:
+            if self._levelint == val:
+                return key
+
+    @property
+    def value(self):
+        return self._levelint
+    
+    @property
+    def get(self, lvl):
+        return self._Level[lvl]

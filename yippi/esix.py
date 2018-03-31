@@ -3,6 +3,7 @@ import urllib.request, json, datetime, yippi.object
 Submission = yippi.object.Submission
 Artist = yippi.object.Artist
 User = yippi.object.User
+UserLevel = yippi.object.UserLevel
 
 headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
