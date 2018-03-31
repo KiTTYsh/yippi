@@ -77,6 +77,16 @@ class search:
             objects.append(esixobject)
         return objects
 
+    def user(*, id="", name="", level=-1, order="name"):
+        if not id and not name:
+            print("Please specify either id or name!")
+            return
+        apiurl = "https://e621.net/user/index.json?id=%s&name=%s&level=%s&order=%s" % (id, name, level, order)
+        req = urllib.request.Request(apiurl, headers=headers)
+        http = urllib.request.urlopen(req)
+        result = json.loads(http.read().decode("utf-8"))
+        return User(result)
+
 def post(id : int):
     """
     Opens a e621 post
@@ -94,13 +104,3 @@ def post(id : int):
     http = urllib.request.urlopen(req)
     result = json.loads(http.read().decode("utf-8"))
     return Submission(result)
-
-def user(*, id="", name="", level=-1, order="name"):
-    if not id and not name:
-        print("Please specify either id or name!")
-        return
-    apiurl = "https://e621.net/user/index.json?id=%s&name=%s&level=%s&order=%s" % (id, name, level, order)
-    req = urllib.request.Request(apiurl, headers=headers)
-    http = urllib.request.urlopen(req)
-    result = json.loads(http.read().decode("utf-8"))
-    return User(result)
