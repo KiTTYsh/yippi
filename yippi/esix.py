@@ -4,7 +4,7 @@ headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
 }
 
-class search():
+class search:
     """
     Main search feature, this doesn't have any parameter to process."""
     def post(tags : list, rating="e", limit=50, page=1, **kwargs):
