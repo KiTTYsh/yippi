@@ -4,42 +4,74 @@ headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
 }
 
-def search(tags : list, rating="e", limit=50, page=1, **kwargs):
+class search():
     """
-    Searches e621
+    Main search feature, this doesn't have any parameter to process."""
+    def post(tags : list, rating="e", limit=50, page=1, **kwargs):
+        """
+        Searches e621 submission
+    
+        :Parameters:
+    
+        tags : [:class:`list`]
+            The tags that will be given to and processed by e621
+        rating : [Optional :class:`str`]
+            Rating that will be used to search, refer to `e621 cheatseet`_ for more information, defaults to "e"
+        limit : [Optional :class:`int`]
+            Limit total results from e621 API, defaults to 50
+        page : [Optional :class:`int`]
+            Scroll through the page given, defaults to page 1
+    
+        Every kwargs will be processed like what `e621 cheatseet` said
+    
+        .. _e621 cheatseet: https://e621.net/help/show/cheatsheet
+    
+        :Return:
+    
+        This command will return list of :class:Submission object"""
+        extratags = []
+        for kw in list(kwargs.items()):
+            kw =':'.join(kw)
+            extratags.append(kw)
+        apiurl = 'https://e621.net/post/index.json?tags=%s+rating:%s+%s&limit=%s&page=%s' \
+            % ('+'.join(tags), rating, '+'.join(extratags), limit, page)
+        req = urllib.request.Request(apiurl, headers=headers)
+        http = urllib.request.urlopen(req)
+        results = json.loads(http.read().decode("utf-8"))
+        objects = []
+        for obj in results:
+            esixobject = Submission(obj)
+            objects.append(esixobject)
+        return objects
 
-    :Parameters:
+    def artist(name : str, limit=10, order="name", page=1):
+        """
+        Searches e621 artist info
 
-    tags : [:class:`list`]
-        The tags that will be given to and processed by e621
-    rating : [Optional :class:`str`]
-        Rating that will be used to search, refer to `e621 cheatseet`_ for more information, defaults to "e"
-    limit : [Optional :class:`int`]
-        Limit total results from e621 API, defaults to 50
-    page : [Optional :class:`int`]
-        Scroll through the page given, defaults to page 1
+        :Parameters:
 
-    Every kwargs will be processed like what `e621 cheatseet` said
+        name : [:class:`str`]
+            Artist name that will be given as query to e621 API
+        limit : [:class:`int`]
+            Uhm, same as the :function:`search` one, defaults to 10
+        order : [:class:`str`]
+            Order the result based on "date" or "name", defaults to "name"
+        page : [:class:`int`M
+             Same as the :function: `search` one too
 
-    .. _e621 cheatseet: https://e621.net/help/show/cheatsheet
+        :Returns:
 
-    :Return:
-
-    This command will return list of :class:Submission object"""
-    extratags = []
-    for kw in list(kwargs.items()):
-        kw =':'.join(kw)
-        extratags.append(kw)
-    apiurl = 'https://e621.net/post/index.json?tags=%s+rating:%s+%s&limit=%s&page=%s' \
-        % ('+'.join(tags), rating, '+'.join(extratags), limit, page)
-    req = urllib.request.Request(apiurl, headers=headers)
-    http = urllib.request.urlopen(req)
-    results = json.loads(http.read().decode("utf-8"))
-    objects = []
-    for obj in results:
-        esixobject = Submission(obj)
-        objects.append(esixobject)
-    return objects
+        :class:`Artist` object of the artist"""
+        apiurl = 'https://e621.net/artist/index.json?name=%s&limit=%s&order=%s&page=%s' \
+            % (name, limit, order, page)
+        req = urllib.request.Request(apiurl, headers=headers)
+        http = urllib.request.urlopen(req)
+        results = json.loads(http.read().decode("utf-8"))
+        objects = []
+        for obj in results:
+            esixobject = Artist(obj)
+            objects.append(esixobject)
+        return objects
 
 def post(id : int):
     """
@@ -65,7 +97,7 @@ class Submission(object):
 
     :Parameters:
 
-    object : :class:`dict`
+    object : [:class:`dict`]
         A JSON or dict of the submission given from e621 API, this should be a valid JSON or everything will broke
 
     :Attributes:
@@ -314,3 +346,85 @@ class Submission(object):
         if self.object['artist']:
             self._artist = self.object['artist']
         return self._artist
+
+class Artist(object):
+    """
+    A representation of e621 artist info
+
+    :Parameters:
+
+    object : [:class:`dict`]
+
+    :Attributes:
+
+    id : :class:`int`
+        e621 artist ID
+    name : :class:`int`
+        The artist name, of course
+    other_names : :class:`str`
+        Artist's alias(es), separared by comma
+    group_name : :class:`str`
+        The group or circle that this artist is a member of
+    is_active : :class:`bool`
+         Whether the artist is still active or not"""
+    def __init__(self, object):
+        self.object = object
+        self._id = None
+        self._name = None
+        self._other_names = None
+        self._group_name = None
+        self._urls = None
+        self._is_active = None
+        self._version = None
+        self._updater_id = None
+
+    def __repr__(self):
+        return str(self.object)
+
+    @property
+    def id(self):
+        if self.object['id']:
+            self._id = self.object['id']
+        return self._id
+
+    @property
+    def name(self):
+        if self.object['name']:
+            self._id = self.object['name']
+        return self._name
+
+    @property
+    def other_names(self):
+        if self.object['other_names']:
+            self._id = self.object['other_names']
+        return self._other_names
+
+    @property
+    def group_name(self):
+        if self.object['group_name']:
+            self._id = self.object['group_name']
+        return self._group_name
+
+    @property
+    def urls(self):
+        if self.object['urls']:
+            self._id = self.object['urls']
+        return self._urls
+
+    @property
+    def is_active(self):
+        if self.object['is_active']:
+            self._id = self.object['is_active']
+        return self._is_active
+
+    @property
+    def version(self):
+        if self.object['version']:
+            self._id = self.object['version']
+        return self._version
+
+    @property
+    def updater_id(self):
+        if self.object['updater_id']:
+            self._id = self.object['updater_id']
+        return self._updater_id
