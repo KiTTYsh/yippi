@@ -393,3 +393,108 @@ class User(object):
         if self.object['artist_tags']:
             self._artist_tags = self.object['artist_tags']
         return self._artist_tags
+
+class UserStats(object):
+    def __init__(self, object):
+        self.object = object
+        self._post_count = None
+        self._del_post_count = None
+        self._edit_count = None
+        self._favorite_count = None
+        self._wiki_count = None
+        self._forum_post_count = None
+        self._note_count = None
+        self._comment_count = None
+        self._blip_count = None
+        self._set_count = None
+        self._pool_update_count = None
+        self._pos_user_records = None
+        self._neutral_user_records = None
+        self._neg_user_records = None
+
+    def __repr__(self):
+        return str(self.object)
+
+    @property
+    def post_count(self):
+        if self.object['post_count']:
+            self._post_count = self.object['post_count']
+        return self._post_count
+
+    @property
+    def del_post_count(self):
+        if self.object['del_post_count']:
+            self._del_post_count = self.object['del_post_count']
+        return self._del_post_count
+
+    @property
+    def edit_count(self):
+        if self.object['edit_count']:
+            self._edit_count = self.object['edit_count']
+        return self._edit_count
+
+    @property
+    def favorite_count(self):
+        if self.object['favorite_count']:
+            self._favorite_count = self.object['favorite_count']
+        return self._favorite_count
+
+    @property
+    def wiki_count(self):
+        if self.object['wiki_count']:
+            self._wiki_count = self.object['wiki_count']
+        return self._wiki_count
+
+    @property
+    def forum_post_count(self):
+        if self.object['forum_post_count']:
+            self._forum_post_count = self.object['forum_post_count']
+        return self._forum_post_count
+
+    @property
+    def note_count(self):
+        if self.object['note_count']:
+            self._note_count = self.object['note_count']
+        return self._note_count
+
+    @property
+    def comment_count(self):
+        if self.object['comment_count']:
+            self._comment_count = self.object['comment_count']
+        return self._comment_count
+
+    @property
+    def blip_count(self):
+        if self.object['blip_count']:
+            self._blip_count = self.object['blip_count']
+        return self._blip_count
+
+    @property
+    def set_count(self):
+        if self.object['set_count']:
+            self._set_count = self.object['set_count']
+        return self._set_count
+
+    @property
+    def pool_update_count(self):
+        if self.object['pool_update_count']:
+            self._pool_update_count = self.object['pool_update_count']
+        return self._pool_update_count
+
+    @property
+    def pos_user_records(self):
+        if self.object['pos_user_records']:
+            self._pos_user_records = self.object['pos_user_records']
+        return self._pos_user_records
+
+    @property
+    def neutral_user_records(self):
+        if self.object['neutral_user_records']:
+            self._neutral_user_records = self.object['neutral_user_records']
+        return self._neutral_user_records
+
+    @property
+    def neg_user_records(self):
+        if self.object['neg_user_records']:
+            self._neg_user_records = self.object['neg_user_records']
+        return self._neg_user_records
