@@ -12,17 +12,17 @@ Commands
 Objects
 -------
 
-.. autoclass:: Submission
+.. autoclass:: yippi.object.Submission
     :members:
 
-.. autoclass:: Artist
+.. autoclass:: yippi.object.Artist
     :members:
 
-.. autoclass:: User
+.. autoclass:: yippi.object.User
     :members:
 
-.. autoclass:: UserLevel
+.. autoclass:: yippi.object.UserLevel
     :members:
 
-.. autoclass:: UserStats
+.. autoclass:: yippi.object.UserStats
     :members:

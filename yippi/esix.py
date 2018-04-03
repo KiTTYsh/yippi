@@ -1,11 +1,5 @@
 import urllib.request, json, datetime, yippi.object
 
-Submission = yippi.object.Submission
-Artist = yippi.object.Artist
-User = yippi.object.User
-UserLevel = yippi.object.UserLevel
-UserStats = yippi.object.UserStats
-
 headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
 }
@@ -46,7 +40,7 @@ class search:
         results = json.loads(http.read().decode("utf-8"))
         objects = []
         for obj in results:
-            esixobject = Submission(obj)
+            esixobject = yippi.object.Submission(obj)
             objects.append(esixobject)
         return objects
 
@@ -75,7 +69,7 @@ class search:
         results = json.loads(http.read().decode("utf-8"))
         objects = []
         for obj in results:
-            esixobject = Artist(obj)
+            esixobject = yippi.object.Artist(obj)
             objects.append(esixobject)
         return objects
 
@@ -104,7 +98,11 @@ class search:
         req = urllib.request.Request(apiurl, headers=headers)
         http = urllib.request.urlopen(req)
         result = json.loads(http.read().decode("utf-8"))
-        return User(result)
+        objects = []
+        for obj in result:
+            esixobject = yippi.object.User(obj)
+            objects.append(esixobject)
+        return objects
 
 def post(id : int):
     """
@@ -122,4 +120,4 @@ def post(id : int):
     req = urllib.request.Request(apiurl, headers=headers)
     http = urllib.request.urlopen(req)
     result = json.loads(http.read().decode("utf-8"))
-    return Submission(result)
+    return yippi.object.Submission(result)

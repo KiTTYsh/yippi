@@ -609,7 +609,7 @@ class UserLevel(object):
 
     @property
     def string(self):
-        for key, val in self._Level:
+        for key, val in self._Level.items():
             if self._levelint == val:
                 return key
 
