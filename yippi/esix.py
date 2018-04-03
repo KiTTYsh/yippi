@@ -121,3 +121,21 @@ def post(id : int):
     http = urllib.request.urlopen(req)
     result = json.loads(http.read().decode("utf-8"))
     return yippi.object.Submission(result)
+
+def get_level(lvl : str):
+    """
+    Get the :class:`yippi.object.UserLevel` object of requested UserLevel
+    """
+    Level = {
+        'Everyone': -1,
+        'Unactivated': 0,
+        'Blocked': 10,
+        'Member': 20,
+        'Privileged': 30,
+        'Staff': 34,
+        'Janitor': 35,
+        'Mod': 40,
+        'Admin': 50
+    }
+
+    return yippi.object.UserLevel[lvl]

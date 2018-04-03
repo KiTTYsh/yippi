@@ -9,6 +9,10 @@ Commands
 .. autoclass:: search
     :members:
 
+.. autofunction:: yippi.post
+
+.. autofunction:: yippi.get_level
+
 Objects
 -------
 

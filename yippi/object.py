@@ -591,8 +591,7 @@ class UserLevel(object):
         The permission level string of user
     value : :class:`int`
         Value ID of the object
-    get : :class:`str`
-        Get a level ID of a permission level"""
+    """
     def __init__(self, level : int):
         self._levelint = level
         self._Level = {
@@ -616,7 +615,3 @@ class UserLevel(object):
     @property
     def value(self):
         return self._levelint
-    
-    @property
-    def get(self, lvl):
-        return self._Level[lvl]
