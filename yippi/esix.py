@@ -28,7 +28,7 @@ class search:
     
         :Return:
     
-        This command will return list of :class:`Submission` object"""
+        This command will return list of :class:`yippi.object.Submission` object"""
         extratags = []
         for kw in list(kwargs.items()):
             kw =':'.join(kw)
@@ -61,7 +61,7 @@ class search:
 
         :Returns:
 
-        :class:`Artist` object of the artist"""
+        :class:`yippi.object.Artist` object of the artist"""
         apiurl = 'https://e621.net/artist/index.json?name=%s&limit=%s&order=%s&page=%s' \
             % (name, limit, order, page)
         req = urllib.request.Request(apiurl, headers=headers)
@@ -90,7 +90,7 @@ class search:
 
         :Returns:
 
-        :class:`User` object"""
+        :class:`yippi.object.User` object"""
         if not id and not name:
             print("Please specify either id or name!")
             return
@@ -115,7 +115,7 @@ def post(id : int):
 
     :Return:
 
-    :class:`Submission` object of the post"""
+    :class:`yippi.object.Submission` object of the post"""
     apiurl = "https://e621.net/post/show.json?id=%s" % (id)
     req = urllib.request.Request(apiurl, headers=headers)
     http = urllib.request.urlopen(req)
