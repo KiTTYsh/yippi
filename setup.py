@@ -6,7 +6,7 @@ setup(
     packages = ['yippi'], # this must be the same as the name above
     version = '0.0.1b2',
     description = 'an e621 API wrapper for Python.',
-    long_description = open('README.md').read(),
+    long_description = open('README.rst').read(),
     license = 'MIT',
     author = 'Rendy Arya Kemal',
     author_email = 'rendyarya22@gmail.com',
