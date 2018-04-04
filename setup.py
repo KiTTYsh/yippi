@@ -29,6 +29,5 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     keywords = ['yippi', 'e621', 'API'], # arbitrary keywords
-    install_requires = [
-    ],
+    python_requires = '>=3',
 )
