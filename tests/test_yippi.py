@@ -53,3 +53,36 @@ def test_yippi():
     post.children
     post.parent
     post.artist
+    user = yippi.search.user(name="Error-")[0]
+    user.artist_tags
+    user.avatar
+    user.created_at
+    user.id
+    level = user.level
+    user.name
+    stat = user.stats
+    stat.blip_count
+    stat.comment_count
+    stat.del_post_count
+    stat.edit_count
+    stat.favorite_count
+    stat.forum_post_count
+    stat.neg_user_records
+    stat.neutral_user_records
+    stat.note_count
+    stat.pool_update_count
+    stat.pos_user_records
+    stat.post_count
+    stat.set_count
+    stat.wiki_count
+    level.string
+    level.value
+    artist = yippi.search.artist("slyus")[0]
+    artist.group_name
+    artist.id
+    artist.is_active
+    artist.name
+    artist.other_names
+    artist.updater_id
+    artist.urls
+    artist.version
