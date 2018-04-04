@@ -20,4 +20,4 @@ $ pip install -e .
 results = yippi.search(['girly', 'male', 'fox']) # Searches e621 with "girly male fox" as query
 results[0].file_url # Get the image/file's URL
 ``` 
-This is only a basic example, I'll add further documentation later.
+[Full Documentation](https://yippidocs.rorre.me)
