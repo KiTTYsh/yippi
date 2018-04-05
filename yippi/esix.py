@@ -83,7 +83,7 @@ class search:
             The user ID to search
         name : [:class:`str`]
             Text query matching part or all of a user's name
-        level : [:class:`int`]
+        level : [:class:`int` or :class:`yippi.object.UserLevel]
             Permission level to search
         order : [:class:`str`]
             Sort of order, defaults to `name`
@@ -94,6 +94,8 @@ class search:
         if not id and not name:
             print("Please specify either id or name!")
             return
+        if isinstance(level, yippi.object.UserLevel):
+            level = level.value
         apiurl = "https://e621.net/user/index.json?id=%s&name=%s&level=%s&order=%s" % (id, name, level, order)
         req = urllib.request.Request(apiurl, headers=headers)
         http = urllib.request.urlopen(req)
@@ -124,8 +126,7 @@ def post(id : int):
 
 def get_level(lvl : str):
     """
-    Get the :class:`yippi.object.UserLevel` object of requested UserLevel
-    """
+    Get the :class:`yippi.object.UserLevel` object of requested UserLevel"""
     Level = {
         'Everyone': -1,
         'Unactivated': 0,
@@ -138,4 +139,5 @@ def get_level(lvl : str):
         'Admin': 50
     }
 
-    return yippi.object.UserLevel[lvl]
+    lvl = Level[lvl]
+    return yippi.object.UserLevel(lvl)

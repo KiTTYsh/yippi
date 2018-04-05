@@ -4,9 +4,10 @@ from setuptools import setup
 setup(
     name = 'yippi',
     packages = ['yippi'], # this must be the same as the name above
-    version = '0.0.1b2',
+    version = '0.0.1b4',
     description = 'an e621 API wrapper for Python.',
     long_description = open('README.rst').read(),
+    long_description_content_type='text/x-rst',
     license = 'MIT',
     author = 'Rendy Arya Kemal',
     author_email = 'rendyarya22@gmail.com',

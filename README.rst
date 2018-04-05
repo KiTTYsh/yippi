@@ -34,4 +34,4 @@ Example
    :target: http://yippi.readthedocs.io/en/latest/?badge=latest
 .. |Build Status| image:: https://travis-ci.org/Rendyindo/yippi.svg?branch=master
    :target: https://travis-ci.org/Rendyindo/yippi
-.. Full Documentation:: https://yippidocs.rorre.me/
+.. _Full Documentation: https://yippidocs.rorre.me/
