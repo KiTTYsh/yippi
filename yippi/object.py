@@ -407,8 +407,8 @@ class User(object):
 
     @property
     def created_at(self):
-        if self.object['created_at']:
-            self._created_at = self.object['created_at']
+        created_timestamp = self.object['created_at']['s']
+        self._created_at = datetime.datetime.fromtimestamp(int(created_timestamp)).strftime('%Y-%m-%d %H:%M:%S')
         return self._created_at
 
     @property
@@ -648,8 +648,8 @@ class Pool(object):
 
     @property
     def created_at(self):
-        if self.object['created_at']:
-            self._created_at = self.object['created_at']
+        created_timestamp = self.object['created_at']['s']
+        self._created_at = datetime.datetime.fromtimestamp(int(created_timestamp)).strftime('%Y-%m-%d %H:%M:%S')
         return self._created_at
 
     @property
