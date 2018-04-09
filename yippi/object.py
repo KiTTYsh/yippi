@@ -615,3 +615,90 @@ class UserLevel(object):
     @property
     def value(self):
         return self._levelint
+
+class Pool(object):
+    def __init__(self, object):
+        self.object = object
+        self._id = None
+        self._description = None
+        self._created_at = None
+        self._updated_at = None
+        self._user_id = None
+        self._name = None
+        self._is_active = None
+        self._is_locked = None
+        self._post_count = None
+        self._user_id = None
+        self._posts = None
+
+    def __repr__(self):
+        return self.name
+
+    @property
+    def id(self):
+        if self.object['id']:
+            self._id = self.object['id']
+        return self._id
+
+    @property
+    def description(self):
+        if self.object['description']:
+            self._description = self.object['description']
+        return self._description
+
+    @property
+    def created_at(self):
+        if self.object['created_at']:
+            self._created_at = self.object['created_at']
+        return self._created_at
+
+    @property
+    def updated_at(self):
+        if self.object['updated_at']:
+            self._updated_at = self.object['updated_at']
+        return self._updated_at
+
+    @property
+    def user_id(self):
+        if self.object['user_id']:
+            self._user_id = self.object['user_id']
+        return self._user_id
+
+    @property
+    def name(self):
+        if self.object['name']:
+            self._name = self.object['name']
+        return self._name
+
+    @property
+    def is_active(self):
+        if self.object['is_active']:
+            self._is_active = self.object['is_active']
+        return self._is_active
+
+    @property
+    def is_locked(self):
+        if self.object['is_locked']:
+            self._is_locked = self.object['is_locked']
+        return self._is_locked
+
+    @property
+    def post_count(self):
+        if self.object['post_count']:
+            self._post_count = self.object['post_count']
+        return self._post_count
+
+    @property
+    def user_id(self):
+        if self.object['user_id']:
+            self._user_id = self.object['user_id']
+        return self._user_id
+
+    @property
+    def posts(self):
+        if self.object['posts']:
+            self._posts = []
+            for post in self.object['posts']:
+                object = yippi.object.Submission(post)
+                self._posts.append(object)
+        return self._posts

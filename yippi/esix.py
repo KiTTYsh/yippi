@@ -106,6 +106,23 @@ class search:
             objects.append(esixobject)
         return objects
 
+    def pool(self, name, page=1):
+        apiurl = 'https://e621.net/pool/index.json?query=%s&page=%s' \
+            % (name, page)
+        req = urllib.request.Request(apiurl, headers=headers)
+        http = urllib.request.urlopen(req)
+        results = json.loads(http.read().decode("utf-8"))
+        objects = []
+        for obj in results:
+            apiurl = 'https://e621.net/pool/show.json?id=%s' \
+                % (obj['id'])
+            req = urllib.request.Request(apiurl, headers=headers)
+            http = urllib.request.urlopen(req)
+            result = json.loads(http.read().decode("utf-8"))
+            esixobject = yippi.object.Pool(result)
+            objects.append(esixobject)
+        return objects
+
 def post(id : int):
     """
     Opens a e621 post
