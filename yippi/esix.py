@@ -1,4 +1,4 @@
-import urllib.request, json, datetime, yippi.object, helper
+import urllib.request, json, datetime, yippi.object, yippi.helper
 
 headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
@@ -35,7 +35,7 @@ class search:
             extratags.append(kw)
         apiurl = 'https://e621.net/post/index.json?tags=%s+rating:%s+%s&limit=%s&page=%s' \
             % ('+'.join(tags), rating, '+'.join(extratags), limit, page)
-        results = helper.getAPI(apiurl)
+        results = yippi.helper.getAPI(apiurl)
         objects = []
         for obj in results:
             esixobject = yippi.object.Submission(obj)
@@ -62,7 +62,7 @@ class search:
         :class:`yippi.object.Artist` object of the artist"""
         apiurl = 'https://e621.net/artist/index.json?name=%s&limit=%s&order=%s&page=%s' \
             % (name, limit, order, page)
-        results = helper.getAPI(apiurl)
+        results = yippi.helper.getAPI(apiurl)
         objects = []
         for obj in results:
             esixobject = yippi.object.Artist(obj)
@@ -93,7 +93,7 @@ class search:
         if isinstance(level, yippi.object.UserLevel):
             level = level.value
         apiurl = "https://e621.net/user/index.json?id=%s&name=%s&level=%s&order=%s" % (id, name, level, order)
-        result = helper.getAPI(apiurl)
+        result = yippi.helper.getAPI(apiurl)
         objects = []
         for obj in result:
             esixobject = yippi.object.User(obj)
@@ -103,12 +103,12 @@ class search:
     def pool(self, name, page=1):
         apiurl = 'https://e621.net/pool/index.json?query=%s&page=%s' \
             % (name, page)
-        results = helper.getAPI(apiurl)
+        results = yippi.helper.getAPI(apiurl)
         objects = []
         for obj in results:
             apiurl = 'https://e621.net/pool/show.json?id=%s' \
                 % (obj['id'])
-            result = helper.getAPI(apiurl)
+            result = yippi.helper.getAPI(apiurl)
             esixobject = yippi.object.Pool(result)
             objects.append(esixobject)
         return objects
@@ -126,7 +126,7 @@ def post(id : int):
 
     :class:`yippi.object.Submission` object of the post"""
     apiurl = "https://e621.net/post/show.json?id=%s" % (id)
-    result = helper.getAPI(apiurl)
+    result = yippi.helper.getAPI(apiurl)
     return yippi.object.Submission(result)
 
 def get_level(lvl : str):
