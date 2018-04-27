@@ -689,12 +689,6 @@ class Pool(object):
         return self._post_count
 
     @property
-    def user_id(self):
-        if self.object['user_id']:
-            self._user_id = self.object['user_id']
-        return self._user_id
-
-    @property
     def posts(self):
         if self.object['posts']:
             self._posts = []
