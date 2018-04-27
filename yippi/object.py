@@ -1,4 +1,4 @@
-import datetime, yippi, urllib.request
+import datetime, yippi, urllib.request, helper
 
 class Submission(object):
     """
@@ -415,9 +415,7 @@ class User(object):
     def avatar(self):
         if self.object['avatar_id']:
             apiurl = "https://e621.net/post/show.json?id=%s" % (id)
-            req = urllib.request.Request(apiurl, headers=headers)
-            http = urllib.request.urlopen(req)
-            result = json.loads(http.read().decode("utf-8"))
+            result = helper.getAPI(apiurl)
             return Submission(result)
         else:
             return self._avatar
