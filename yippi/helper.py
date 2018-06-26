@@ -1,4 +1,4 @@
-import time, requests
+import time, requests, yippi.exceptions
 
 header = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
@@ -27,3 +27,14 @@ def getAPI(url):
     else:
         return r.raise_for_status()
     return r.json()
+
+@RateLimit(2)
+def getTagsInfo(tag):
+    r = requests.get("https://e621.net/tag/index.json?name={}&limit=1".format(tag), headers=header)
+    if r.status_code == 200:
+        pass
+    else:
+        return r.raise_for_status()
+    if not r.json():
+        return yippi.exceptions.NoSuchException
+    return r.json()[0]
