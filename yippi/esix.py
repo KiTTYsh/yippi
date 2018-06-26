@@ -7,7 +7,7 @@ headers = {
 class search:
     """
     Main search feature, this doesn't have any parameter to process."""
-    def post(tags : list, rating="e", limit=50, page=1, **kwargs):
+    def post(self, tags : list, rating="e", limit=50, page=1, **kwargs):
         """
         Searches e621 submission
     
@@ -42,7 +42,7 @@ class search:
             objects.append(esixobject)
         return objects
 
-    def artist(name : str, limit=10, order="name", page=1):
+    def artist(self, name : str, limit=10, order="name", page=1):
         """
         Searches e621 artist info
 
