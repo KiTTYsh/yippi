@@ -146,3 +146,6 @@ def get_level(lvl : str):
 
     lvl = Level[lvl]
     return yippi.object.UserLevel(lvl)
+
+def get_tag(tag : str):
+    return yippi.object.Tag(yippi.helper.getTagsInfo(tag))

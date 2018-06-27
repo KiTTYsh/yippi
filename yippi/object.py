@@ -694,3 +694,43 @@ class Pool(object):
                 object = yippi.object.Submission(post)
                 self._posts.append(object)
         return self._posts
+
+class Tag(object):
+    def __init__(self, object):
+        self.object = object
+        self._id = None
+        self._name = None
+        self._count = None
+        self._type = None
+        self._type_locked = None
+    
+    @property
+    def id(self):
+        if self.object['id']:
+            self._id = self.object['id']
+        return self._id
+
+    @property
+    def name(self):
+        if self.object['name']:
+            self._name = self.object['name']
+        return self._name
+
+    @property
+    def count(self):
+        if self.object['count']:
+            self._count = self.object['count']
+        return self._count
+
+    @property
+    def type(self):
+        if self.object['type']:
+            self._type = self.object['type']
+        return self._type
+
+    @property
+    def type_locked(self):
+        if self.object['type_locked']:
+            self._type_locked = self.object['type_locked']
+        return self._type_locked
+
