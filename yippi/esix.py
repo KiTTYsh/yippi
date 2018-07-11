@@ -1,4 +1,4 @@
-import urllib.request, json, datetime, yippi.object, yippi.helper
+import urllib.request, json, datetime, yippi.object, yippi.helper, yippi.xml.object
 
 headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
@@ -69,7 +69,7 @@ class search:
             objects.append(esixobject)
         return objects
 
-    def user(*, id="", name="", level=-1, order="name"):
+    def user(self, *, id="", name="", level=-1, order="name"):
         """
         Searches user at e621
 
@@ -112,6 +112,23 @@ class search:
             esixobject = yippi.object.Pool(result)
             objects.append(esixobject)
         return objects
+
+    def set(self, *, page=1, user=None, maintainer=None, post=None, id=None):
+        if id:
+            apiurl = 'https://e621.net/set/show.xml?id=%s' \
+                % (id)  
+            result = yippi.helper.getxmlAPI(apiurl)
+            return yippi.xml.object.Set(result)
+        apiurl = 'https://e621.net/set/index.xml?page=%s&maintainer_id=%s&user_id=%s&post_id=%s' \
+            % (page, user, maintainer, post)
+        results = yippi.helper.getxmlAPI(apiurl)
+        sets = []
+        for set in results.findAll("set"):
+            apiurl = 'https://e621.net/set/show.xml?id=%s' \
+                % (set.id)
+            result = yippi.helper.getxmlAPI(apiurl)
+            sets.append(yippi.xml.object.Set(result))
+        return sets
 
 def post(id : int):
     """

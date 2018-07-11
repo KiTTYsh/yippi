@@ -1,4 +1,5 @@
 import time, requests, yippi.exceptions
+from bs4 import BeautifulSoup
 
 header = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
@@ -27,6 +28,15 @@ def getAPI(url):
     else:
         return r.raise_for_status()
     return r.json()
+
+@RateLimit(2)
+def getxmlAPI(url):
+    r = requests.get(url, headers=header)
+    if r.status_code == 200:
+        pass
+    else:
+        return r.raise_for_status()
+    return BeautifulSoup(r.text, 'xml')
 
 @RateLimit(2)
 def getTagsInfo(tag):
