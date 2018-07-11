@@ -1,7 +1,7 @@
 import yippi
 
 def test_yippi():
-    res = yippi.search.post(['girly', 'male'], limit=1, rating="q", order="score")[0]
+    res = yippi.search().post(['girly', 'male'], limit=1, rating="q", order="score")[0]
     res.id
     res.tags
     res.locked_tags
@@ -77,7 +77,7 @@ def test_yippi():
     stat.wiki_count
     level.string
     level.value
-    artist = yippi.search.artist("slyus")[0]
+    artist = yippi.search().artist("slyus")[0]
     artist.group_name
     artist.id
     artist.is_active
