@@ -53,7 +53,7 @@ def test_yippi():
     post.children
     post.parent
     post.artist
-    user = yippi.search.user(name="Error-")[0]
+    user = yippi.search().user(name="Error-")[0]
     user.artist_tags
     user.avatar
     user.created_at
