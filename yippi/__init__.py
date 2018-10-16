@@ -1,5 +1,5 @@
 from .esix import search, post
-import .xml.object
+from xml import object
 __all__ = [
 	'search',
 	'post'
