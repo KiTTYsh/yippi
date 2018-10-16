@@ -1,7 +1,7 @@
 import urllib.request, json, datetime
 from .object import *
 from .helper import *
-import .xml.object.Set
+import yippi.xml.object
 
 headers = {
     'User-Agent': 'Yippi/1.0 (by Error- on e621)'
