@@ -32,6 +32,6 @@ setup(
     keywords = ['yippi', 'e621', 'API'], # arbitrary keywords
     python_requires = '>=3',
     install_requires = [
-        'requests'
+        'requests', 'bs4', 'lxml', 'python-dateutil'
     ]
 )
