@@ -100,7 +100,7 @@ class Submission(object):
         self._artist = None
 
     def __repr__(self):
-        return str(self.object)
+        return "#{} - {}".format(str(self.id), str(self.artist))
 
     @property
     def created_at(self):
@@ -300,7 +300,7 @@ class Artist(object):
         self._updater_id = None
 
     def __repr__(self):
-        return str(self.object)
+        return "Artist - " + str(name)
 
     @property
     def id(self):
@@ -385,7 +385,7 @@ class User(object):
         self._artist_tags = None
 
     def __repr__(self):
-        return str(self.object)
+        return "User - " + str(name)
 
     @property
     def name(self):
@@ -474,9 +474,6 @@ class UserStats(object):
         self._pos_user_records = None
         self._neutral_user_records = None
         self._neg_user_records = None
-
-    def __repr__(self):
-        return str(self.object)
 
     @property
     def post_count(self):
