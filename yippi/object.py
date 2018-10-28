@@ -300,7 +300,7 @@ class Artist(object):
         self._updater_id = None
 
     def __repr__(self):
-        return "Artist - " + str(name)
+        return "Artist - " + str(self.name)
 
     @property
     def id(self):
@@ -385,7 +385,7 @@ class User(object):
         self._artist_tags = None
 
     def __repr__(self):
-        return "User - " + str(name)
+        return "User - " + str(self.name)
 
     @property
     def name(self):
