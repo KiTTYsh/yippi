@@ -104,6 +104,20 @@ class search:
         return objects
 
     def pool(self, name, page=1):
+        """
+        Searches pool
+
+        :Parameters:
+
+        name : [:class:`str`]
+            Pool name to search
+        page : [:class:`int`]
+            Page number to open, defaults to 1
+        
+        :Returns:
+
+        List of :class:`yippi.object.Pool` object
+        """
         apiurl = 'https://e621.net/pool/index.json?query=%s&page=%s' \
             % (name, page)
         results = yippi.helper.getAPI(apiurl)
