@@ -1,6 +1,2 @@
-from .esix import search, post
+from .esix import *
 import yippi.xml.object
-__all__ = [
-	'search',
-	'post'
-]
