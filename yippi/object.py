@@ -88,6 +88,12 @@ class Submission(object):
         self._file_size = None
         self._file_url = None
         self._file_ext = None
+        self._preview_url = None
+        self._preview_width = None
+        self._preview_height = None
+        self._sample_url = None
+        self._sample_width = None
+        self._sample_height = None
         self._rating = None
         self._status = None
         self._width = None
@@ -197,6 +203,42 @@ class Submission(object):
         if self.object['file_ext']:
             self._file_ext = self.object['file_ext']
         return self._file_ext
+
+    @property
+    def preview_url(self):
+        if self.object['preview_url']:
+            self._preview_url = self.object['preview_url']
+        return self._preview_url
+
+    @property
+    def preview_width(self):
+        if self.object['preview_width']:
+            self._preview_width = self.object['preview_width']
+        return self._preview_width
+
+    @property
+    def preview_height(self):
+        if self.object['preview_height']:
+            self._preview_height = self.object['preview_height']
+        return self._preview_height
+
+    @property
+    def sample_url(self):
+        if self.object['sample_url']:
+            self._sample_url = self.object['sample_url']
+        return self._sample_url
+
+    @property
+    def sample_width(self):
+        if self.object['sample_width']:
+            self._sample_width = self.object['sample_width']
+        return self._sample_width
+
+    @property
+    def sample_height(self):
+        if self.object['sample_height']:
+            self._sample_height = self.object['sample_height']
+        return self._sample_height
 
     @property
     def rating(self):
